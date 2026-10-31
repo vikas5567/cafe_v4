@@ -1,0 +1,438 @@
+/* ============================================================
+   Lé Café Crush — Design System
+   Palette derived from the logo · Poster-style aesthetic
+   ============================================================ */
+
+/* --- Design Tokens --- */
+:root {
+  /* Backgrounds — Consistent Luxury Warm Palette */
+  --bg: #FAF8F5;
+  --bg-alt: #F2ECE4;
+  --surface: #ffffff;
+  --night: #1C1919;
+  --night-deep: #121010;
+
+  /* Brand from the logo */
+  --primary: #e84036;
+  --cta: #d93a1f;
+  --cta-strong: #c4311f;
+  --orange: #ec7f35;
+  --yellow: #f5c829;
+  --gold: #d4a359;
+  --leaf: #9fc54d;
+  --green-text: #4f7a18;
+  --bean: #8a2f33;
+
+  /* Ink */
+  --ink: #222020;
+  --ink-light: rgba(34, 32, 32, 0.65);
+  --ink-faint: rgba(34, 32, 32, 0.08);
+  --cream-faint: rgba(250, 248, 245, 0.12);
+
+  /* Accent (overridden per-dish in hero) */
+  --accent: var(--primary);
+
+  /* Typography */
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Instrument Sans', system-ui, sans-serif;
+  --font-mono: 'DM Mono', 'Courier New', monospace;
+  --font-hindi: 'Tiro Devanagari Hindi', serif;
+
+  /* Sizing scale */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+  --space-4xl: 8rem;
+
+  /* Poster borders */
+  --border: 3px solid var(--ink);
+  --border-light: 1px solid var(--ink-faint);
+  --border-night: 1px solid var(--cream-faint);
+  --shadow-hard: 4px 4px 0px var(--ink);
+  --shadow-hard-lg: 8px 8px 0px var(--ink);
+
+  /* Transitions */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --duration-fast: 0.2s;
+  --duration-med: 0.4s;
+  --duration-slow: 0.8s;
+
+  /* Layout */
+  --nav-height: 72px;
+  --container-max: 1440px;
+  --container-pad: clamp(1rem, 4vw, 3rem);
+}
+
+/* --- Reset --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: auto; /* Lenis handles smooth scroll */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--ink);
+  background-color: var(--bg);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+img, video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+/* --- Typography Utilities --- */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.font-hindi {
+  font-family: var(--font-hindi);
+}
+
+/* Eyebrow label: 01, 02, etc. */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+}
+
+.eyebrow--night {
+  color: rgba(255, 250, 240, 0.5);
+}
+
+/* Section heading */
+.section-heading {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.section-heading em,
+.section-heading i {
+  font-style: italic;
+  color: var(--primary);
+}
+
+/* Giant display text */
+.display-giant {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(4rem, 12vw, 10rem);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+/* --- Layout Utilities --- */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-pad);
+  padding-right: var(--container-pad);
+}
+
+.section-pad {
+  padding-top: var(--space-4xl);
+  padding-bottom: var(--space-4xl);
+}
+
+/* --- Night Stage --- */
+.night-stage {
+  background-color: var(--night);
+  color: var(--bg);
+}
+
+.night-stage .eyebrow {
+  color: rgba(255, 250, 240, 0.5);
+}
+
+.night-stage .section-heading {
+  color: var(--bg);
+}
+
+.night-stage .section-heading em {
+  color: var(--yellow);
+}
+
+/* --- Film Grain Overlay --- */
+.film-grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.035;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 128px 128px;
+}
+
+/* --- Buttons --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.875rem 1.75rem;
+  border: var(--border);
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--duration-fast) var(--ease-out),
+              box-shadow var(--duration-fast) var(--ease-out);
+}
+
+.btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-hard);
+}
+
+.btn:active {
+  transform: translate(0, 0);
+  box-shadow: none;
+}
+
+.btn--primary {
+  background-color: var(--cta);
+  color: #fff;
+  border-color: var(--cta-strong);
+}
+
+.btn--primary:hover {
+  background-color: var(--cta-strong);
+}
+
+.btn--yellow {
+  background-color: var(--yellow);
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
+.btn--outline {
+  background-color: transparent;
+  color: var(--ink);
+}
+
+.btn--outline-night {
+  background-color: transparent;
+  color: var(--bg);
+  border-color: var(--cream-faint);
+}
+
+.btn--sm {
+  font-size: 0.75rem;
+  padding: 0.625rem 1.25rem;
+}
+
+/* --- Veg / Non-Veg markers --- */
+.veg-dot {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--green-text);
+  border-radius: 1px;
+  position: relative;
+}
+
+.veg-dot::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background-color: var(--green-text);
+}
+
+.nonveg-dot {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--primary);
+  border-radius: 1px;
+  position: relative;
+}
+
+.nonveg-dot::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 0;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 5px solid var(--primary);
+  background: none;
+  top: 1px;
+  left: 1px;
+}
+
+/* --- Open/Closed Pill --- */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  padding: 0.375rem 0.75rem;
+  border: 2px solid var(--ink-faint);
+  text-transform: uppercase;
+}
+
+.status-pill__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--leaf);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+.status-pill__dot--closed {
+  background-color: var(--primary);
+  animation: none;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* --- Night Stages --- */
+.night-stage {
+  background-color: var(--night-deep) !important;
+  color: #FAF8F5 !important;
+}
+
+.night-stage .section-heading,
+.night-stage h2,
+.night-stage h3,
+.night-stage h4 {
+  color: #FAF8F5 !important;
+}
+
+.night-stage p {
+  color: rgba(250, 248, 245, 0.75) !important;
+}
+
+/* --- Line Mask Animation Helper --- */
+.line-mask {
+  overflow: hidden;
+}
+
+.line-mask__inner {
+  display: block;
+  transform: translateY(110%);
+  transition: transform var(--duration-slow) var(--ease-out);
+}
+
+.line-mask--visible .line-mask__inner {
+  transform: translateY(0);
+}
+
+/* --- Scrollbar --- */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--ink-faint);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ink-light);
+}
+
+/* --- Selection --- */
+::selection {
+  background-color: var(--primary);
+  color: #fff;
+}
+
+/* --- Reduced Motion --- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --- Responsive breakpoints helpers --- */
+@media (max-width: 1100px) {
+  :root {
+    --nav-height: 64px;
+  }
+}
+
+@media (max-width: 900px) {
+  :root {
+    --nav-height: 60px;
+  }
+  .section-pad {
+    padding-top: var(--space-3xl);
+    padding-bottom: var(--space-3xl);
+  }
+}
+
+@media (max-width: 520px) {
+  .section-pad {
+    padding-top: var(--space-2xl);
+    padding-bottom: var(--space-2xl);
+  }
+}
